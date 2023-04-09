@@ -1,4 +1,4 @@
-from server_side import app
+from server import app
 
 version = '0.1.0'
 
