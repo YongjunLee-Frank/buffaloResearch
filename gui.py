@@ -3,6 +3,7 @@ import requests
 from PIL import Image, ImageTk
 from io import BytesIO
 from guizero import App, Picture, Box, Text, PushButton
+from flask import Flask, request, jsonify
 #DECLARE GLOBAL VARIABLES
 count = 0
 videoShow = True
