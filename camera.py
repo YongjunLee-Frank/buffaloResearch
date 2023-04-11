@@ -9,7 +9,7 @@ import numpy as np
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # client_socket.connect(('0.tcp.ngrok.io', 19194))
-client_socket.connect(('136.183.247.86', 8485))
+client_socket.connect(('136.183.160.31', 8485))
 
 img_counter = 0
 cam = cv2.VideoCapture(0)
@@ -33,7 +33,7 @@ while True:
 
     if img_counter%2==0:
         client_socket.sendall(struct.pack(">L", size) + data) # > big-endian L long unsigned
-        cv2.imshow('client',frame)
+        #cv2.imshow('client',frame)
         
     img_counter += 1
 
