@@ -3,7 +3,29 @@ import requests
 from PIL import Image, ImageTk
 from io import BytesIO
 from guizero import App, Picture, Box, Text, PushButton
-from flask import Flask, request, jsonify
+
+# Streaming libraries
+import socket
+import cv2
+import pickle
+import struct 
+
+# Streaming global variable
+HOST=''
+PORT=8485
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+print('Socket created')
+s.bind((HOST,PORT))
+print('Socket bind complete')
+s.listen(0)
+print('Socket now listening')
+
+conn,addr=s.accept()
+
+# this button start to listen camera data from PI side
+def get_video():
+
 #DECLARE GLOBAL VARIABLES
 count = 0
 videoShow = True
@@ -128,24 +150,7 @@ def show_video():
         video.visible = False
         #Update flag
         videoShow = False
-     
-def get_video():
-    videoResponse = requests.get('http://127.0.0.1:5001/stream?src=0', stream = True)
-   
-    if(videoResponse.status_code == 200):
-        print("get response code 200")
-        print('videoResponse :: ', videoResponse)
-        #print('videoResponse.content :: ', videoResponse.content)
-        image_stream = videoResponse.raw
-        print('finish to get videoResponse.raw')
-        print('videoResponse Raw :: ', videoResponse.raw)
-        print('raw data', image_stream)
-        image = Image.open(image_stream)
-        print('success to open image')
-        img = ImageTk.PhotoImage(image)
-        print('success to make image with image')
-        video = Picture(video_box, image = img, width = 250, height = 250)
-        print('set image to video')
+         
         
 #DISPLAY THE GUI FORM FOR THE CONTROLLER
 app = App(title = "Rover GUI", width = 925, height = 500, bg = "#ef9637")
