@@ -41,6 +41,9 @@ while True:
     # unpack image using pickle
     frame=pickle.loads(frame_data, fix_imports=True, encoding="bytes")
     frame = cv2.imdecode(frame, cv2.IMREAD_COLOR)
-
-    cv2.imshow('server',frame)
+    cv2.imwrite("PiCamera.jpg",frame)
+    
+    #cv2.imshow('server',frame)
+    #video = frame
+    #Picture(video_box, image = frame, width = 250, height = 250)
     cv2.waitKey(1)
