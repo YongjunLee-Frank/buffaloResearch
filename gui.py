@@ -1,19 +1,20 @@
 import time
 import requests
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageFile
 from io import BytesIO
 from guizero import App, Picture, Box, Text, PushButton
-
-# Streaming libraries
-import socket
 import cv2
-import pickle
-import struct 
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
+
+
 
 
 # this button start to listen camera data from PI side
 def get_video():
-    video = Picture(video_box, image = "PiCamera.jpg", width = 250, height = 250)
+    video.value = "PiCamera.jpg"
+    #while True:
+    #    video = Picture(video_box, image = "PiCamera.jpg", width = 250, height = 250)
 
 
 #DECLARE GLOBAL VARIABLES
@@ -171,7 +172,7 @@ space_boxRight = Box(container, grid = [4,1], height = "fill", width = "25")
 
 #OBJECTS IN BOXES
 #DISPLAYS THE VIDEO
-video = Picture(video_box, image = "background_bsclogo.jpg", width = 250, height = 250)
+video = Picture(video_box, image = "PiCamera.jpg", width = 250, height = 250)
 
 
 
@@ -206,6 +207,9 @@ showVideoBtn.bg = "white"
 stop_btn.text_color = "red"
 
 #END OF CONTAINER
+
+#Repeat app to get image data
+app.repeat(10, get_video)
 
 #DISPLAY GUI
 app.display()
