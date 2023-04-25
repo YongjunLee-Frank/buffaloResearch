@@ -209,7 +209,7 @@ stop_btn.text_color = "red"
 #END OF CONTAINER
 
 #Repeat app to get image data
-app.repeat(10, get_video)
+app.repeat(50, get_video)
 
 #DISPLAY GUI
 app.display()
